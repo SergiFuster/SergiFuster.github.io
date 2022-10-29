@@ -1,0 +1,180 @@
+body{
+  margin: 0;
+  background-color: #212020;
+}
+
+
+
+header{
+  color: #F5F5F5;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#shortcuts{
+  width: 100%;
+  top: 0;
+  padding: 1rem 0rem;
+  background-color: rgba(26, 25, 25, 0.95);
+}
+
+div.fixed{
+  position: fixed;
+}
+#shortcuts a{
+  margin: 1rem;
+}
+
+a{
+  font-weight: bold;
+  text-decoration: none;
+  color: #F5F5F5;
+}
+
+.current{
+  color:#FC6621;
+}
+
+#shortcutsContainer{
+  margin: 0rem 6rem;
+}
+
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+#presentation{
+  margin: 7rem 5rem;
+}
+#formulary{
+  margin: 5rem 5rem;
+}
+h1{
+  margin: 0;
+  font-size: 4rem;
+}
+
+.left{
+  float: left;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  75%{
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.one{
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+.two{
+  animation: 1.2s ease-out 0s 1 slideInFromLeft;
+}
+.three{
+  animation: 1.4s ease-out 0s 1 slideInFromLeft;
+}
+
+.inpage{
+  color:#FC6621;
+}
+
+form{
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+}
+
+input, textarea{
+  width: 40rem;
+  max-width: 40rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  border-width: 0;
+  color: #F5F5F5;
+  background-color: #1A1919;
+}
+
+input[type=submit], input[type=reset]{
+  width: 10rem;
+  text-align: center;
+  margin-right: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #FC6621;
+}
+
+textarea{
+  height: 5rem;
+  min-width: 10rem;
+  min-height: 4rem;
+  max-height: 10rem;
+}
+
+form h3{
+  margin: 1rem 0rem 2rem 0rem;
+}
+
+.game .container{
+  width: 40%;
+  display: inline-block;
+  padding-top: 5rem;
+  padding-left: 5rem;
+}
+.icon{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: white;
+  overflow: hidden;
+}
+.icon img{
+  width: 100%;
+  object-fit: cover;
+}
+.game h3{
+  color:White;
+  font-size: 1rem;
+  margin: 2rem 1rem;
+}
+.game{
+  height: 30rem;
+}
+.game a{
+  margin: 2rem 5rem;
+  color: #FC6621;
+}
+.gradient1{
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(41,50,66,1) 100%);
+}
+
+.BnWgradient{
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(80,80,80,1) 100%);
+}
+
+
+.left{
+  float: left;
+}
+/* Fonts:
+font-family: 'Montserrat', sans-serif;
+
+Colors:
+White = #F5F5F5;
+Yellow = #F5D15B;
+Salmon = #F54R5D;
+Gray = #3D3D3D;
