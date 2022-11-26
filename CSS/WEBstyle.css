@@ -3,7 +3,29 @@ body{
   background-color: #212020;
 }
 
+.card{
+      position: relative;
+      width: 300px;
+      height: 400px;
+      margin: 50px;
+      border-radius: 15px;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+      --s: 250px;   /* the size of the image */
+      --b: 8px;     /* the border thickness*/
+      --g: 14px;    /* the gap */
+      --c: #4ECDC4; /* the color */
 
+      width: var(--s);
+      aspect-ratio: 1;
+      outline: calc(var(--s)/2) solid #000D;
+      outline-offset: calc(var(--s)/-2);
+      cursor: pointer;
+      transition: 0.3s;
+}
+.card:hover{
+  outline: var(--b) solid var(--c);
+  outline-offset: var(--g);
+}
 header{
   color: #F5F5F5;
   margin: 0;
@@ -116,6 +138,11 @@ input, textarea{
   background-color: #1A1919;
 }
 
+.center{
+  position: absolute;
+  left: 12%;
+  display: inline-block;
+}
 input[type=submit], input[type=reset]{
   width: 10rem;
   text-align: center;
@@ -154,14 +181,12 @@ th{
   padding: 5rem;
 }
 .icon{
-  width: 100px;
-  height: 100px;
+  margin: auto;
   border-radius: 100%;
-  background-color: white;
-  overflow: hidden;
 }
 .icon img{
   width: 100%;
+  margin: inherit;
   object-fit: cover;
 }
 .game h3{
