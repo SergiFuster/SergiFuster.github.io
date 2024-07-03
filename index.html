@@ -36,8 +36,8 @@
     <script type="text/javascript">
         function sendEmail(event) {
             event.preventDefault();
-
-            emailjs.sendForm('service_uca0hzq', 'template_aes1x6r', event.target)
+            console.log(event.target);  
+            emailjs.sendForm('service_uca0hzq', 'template_znsrc9u', event.target)
                 .then(function(response) {
                     alert('Correo enviado exitosamente!', response.status, response.text);
                 }, function(error) {
@@ -526,7 +526,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Get in touch sending an email yourself or calling directly, thanks!</p>
+        <p>Get in touch! The contact form also works, try it!</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -578,13 +578,9 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
+                  <p>(You'll receive a copy of the message)</p>
+                  <button class="btn btn-primary" type="submit">Send Message</button>
                 </div>
-
               </div>
             </form>
         </div>
