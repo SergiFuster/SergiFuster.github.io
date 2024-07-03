@@ -27,13 +27,24 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("JNkw-kW19FWSXD1mJ"); // Reemplaza con tu user_id de EmailJS
+        })();
+    </script>
+    <script type="text/javascript">
+        function sendEmail(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_uca0hzq', 'template_aes1x6r', event.target)
+                .then(function(response) {
+                    alert('Correo enviado exitosamente!', response.status, response.text);
+                }, function(error) {
+                    alert('Error al enviar el correo.', error);
+                });
+        }
+  </script>
 </head>
 
 <body class="index-page">
@@ -541,6 +552,41 @@
                 </div>
               </div><!-- End Info Item -->
             </div>
+          </div>
+          <div class="col-lg-7">
+            <form onsubmit="sendEmail(event)" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <label for="name" class="pb-2">Your Name</label>
+                  <input type="text" name="name" id="name" class="form-control" required="">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="email" class="pb-2">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <label for="subject" class="pb-2">Subject</label>
+                  <input type="text" class="form-control" name="subject" id="subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <label for="message" class="pb-2">Message</label>
+                  <textarea class="form-control" name="message" rows="10" id="message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
         </div>
       </div>
 
