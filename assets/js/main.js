@@ -21,6 +21,14 @@
   }
   headerToggleBtn.addEventListener('click', headerToggle);
 
+  // Keyboard accessibility for header toggle
+  headerToggleBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      headerToggle();
+    }
+  });
+
   /**
    * Hide mobile nav on same-page/hash links
    */
