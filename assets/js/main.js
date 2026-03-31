@@ -34,7 +34,9 @@
     headerToggleBtn.classList.toggle('bi-list');
     headerToggleBtn.classList.toggle('bi-x');
   }
-  headerToggleBtn.addEventListener('click', headerToggle);
+  if (headerToggleBtn) {
+    headerToggleBtn.addEventListener('click', headerToggle);
+  }
 
   // Keyboard accessibility for header toggle
   headerToggleBtn.addEventListener('keydown', (e) => {
