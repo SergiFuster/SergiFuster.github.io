@@ -36,12 +36,32 @@
     <script type="text/javascript">
         function sendEmail(event) {
             event.preventDefault();
-            console.log(event.target);  
-            emailjs.sendForm('service_uca0hzq', 'template_znsrc9u', event.target)
+            const form = event.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+
+            emailjs.sendForm('service_uca0hzq', 'template_znsrc9u', form)
                 .then(function(response) {
-                    alert('Correo enviado exitosamente!', response.status, response.text);
+                    // Success state
+                    btn.innerHTML = 'Sent!';
+                    console.log('SUCCESS!', response.status, response.text);
+                    form.reset();
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                    }, 3000);
                 }, function(error) {
-                    alert('Error al enviar el correo.', error);
+                    // Error state
+                    btn.innerHTML = 'Error. Try again.';
+                    console.error('FAILED...', error);
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                    }, 3000);
                 });
         }
   </script>
@@ -50,7 +70,7 @@
 <body class="index-page">
 
   <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <i class="header-toggle d-xl-none bi bi-list" role="button" aria-label="Toggle navigation" tabindex="0"></i>
 
     <div class="profile-img">
       <img src="assets/img/my-profile-img.jpg" alt="" class="img-fluid rounded-circle">
@@ -65,8 +85,8 @@
 
     
     <div class="social-links text-center">
-      <a href="https://github.com/SergiFuster" class="github"><i class="bi bi-github"></i></i></a>
-      <a href="https://www.linkedin.com/in/sergi-fuster-dura-343999208/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/SergiFuster" class="github" aria-label="GitHub"><i class="bi bi-github"></i></i></a>
+      <a href="https://www.linkedin.com/in/sergi-fuster-dura-343999208/" class="linkedin" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
     </div>
 
     
@@ -479,7 +499,7 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Scroll to top"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>

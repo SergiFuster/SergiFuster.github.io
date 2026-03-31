@@ -10,19 +10,18 @@
   "use strict";
 
   /**
-   * Throttle function
+   * Throttle function to limit the rate at which a function can be called.
    */
-  function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-      const args = arguments;
-      const context = this;
-      if (!inThrottle) {
-        func.apply(context, args);
-        inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
+  function throttle(func, delay) {
+    let lastCall = 0;
+    return function(...args) {
+      const now = new Date().getTime();
+      if (now - lastCall < delay) {
+        return;
       }
-    }
+      lastCall = now;
+      return func(...args);
+    };
   }
 
   /**
@@ -38,6 +37,14 @@
   if (headerToggleBtn) {
     headerToggleBtn.addEventListener('click', headerToggle);
   }
+
+  // Keyboard accessibility for header toggle
+  headerToggleBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      headerToggle();
+    }
+  });
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -161,14 +168,17 @@
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
+    const isotopeContainer = isotopeItem.querySelector('.isotope-container');
+    if (isotopeContainer) {
+      imagesLoaded(isotopeContainer, function() {
+        initIsotope = new Isotope(isotopeContainer, {
+          itemSelector: '.isotope-item',
+          layoutMode: layout,
+          filter: filter,
+          sortBy: sort
+        });
       });
-    });
+    }
 
     isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
       filters.addEventListener('click', function() {
@@ -225,21 +235,30 @@
   /**
    * Navmenu Scrollspy
    */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  const navmenulinks = document.querySelectorAll('.navmenu a');
+
+  const navmenuSections = [];
+  navmenulinks.forEach(navmenulink => {
+    if (navmenulink.hash) {
+      const section = document.querySelector(navmenulink.hash);
+      if (section) {
+        navmenuSections.push({
+          link: navmenulink,
+          section: section
+        });
+      }
+    }
+  });
 
   function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
-      if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
+    let position = window.scrollY + 200;
+    navmenuSections.forEach(item => {
+      if (position >= item.section.offsetTop && position <= (item.section.offsetTop + item.section.offsetHeight)) {
+        item.link.classList.add('active');
       } else {
-        navmenulink.classList.remove('active');
+        item.link.classList.remove('active');
       }
-    })
+    });
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);

@@ -1300,3 +1300,23 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/*--------------------------------------------------------------
+# Button Loading State
+--------------------------------------------------------------*/
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: php-email-form-loading 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.contact form button[type=submit]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
