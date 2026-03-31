@@ -10,6 +10,22 @@
   "use strict";
 
   /**
+   * Throttle function
+   */
+  function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    }
+  }
+
+  /**
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
@@ -19,7 +35,9 @@
     headerToggleBtn.classList.toggle('bi-list');
     headerToggleBtn.classList.toggle('bi-x');
   }
-  headerToggleBtn.addEventListener('click', headerToggle);
+  if (headerToggleBtn) {
+    headerToggleBtn.addEventListener('click', headerToggle);
+  }
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -74,7 +92,7 @@
   });
 
   window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+  document.addEventListener('scroll', throttle(toggleScrollTop, 100));
 
   /**
    * Animation on scroll function and init
