@@ -10,6 +10,21 @@
   "use strict";
 
   /**
+   * Throttle function to limit the rate at which a function can be called.
+   */
+  function throttle(func, delay) {
+    let lastCall = 0;
+    return function(...args) {
+      const now = new Date().getTime();
+      if (now - lastCall < delay) {
+        return;
+      }
+      lastCall = now;
+      return func(...args);
+    };
+  }
+
+  /**
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
@@ -82,7 +97,7 @@
   });
 
   window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+  document.addEventListener('scroll', throttle(toggleScrollTop, 100));
 
   /**
    * Animation on scroll function and init
