@@ -42,6 +42,7 @@
 .light-background {
   --background-color: #1e293b; /* Slate 800 - "Lighter" Dark for alternating sections */
   --surface-color: #334155; /* Slate 700 */
+  background-image: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
 .dark-background {
@@ -50,6 +51,7 @@
   --heading-color: #ffffff;
   --surface-color: #0f172a;
   --contrast-color: #ffffff;
+  background-image: linear-gradient(135deg, #020617 0%, #0f172a 100%);
 }
 
 /* Smooth scroll */
@@ -154,7 +156,9 @@ h6 {
 --------------------------------------------------------------*/
 .header {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: rgba(15, 23, 42, 0.85); /* Modern glassmorphism look */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   left: 0;
@@ -164,8 +168,8 @@ h6 {
   transition: all ease-in-out 0.3s;
   overflow-y: auto;
   z-index: 997;
-  border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  box-shadow: 4px 0 20px rgba(0,0,0,0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 4px 0 20px rgba(0,0,0,0.1);
 }
 
 .header .profile-img img {
@@ -742,10 +746,21 @@ section,
 }
 
 .resume .resume-item {
-  padding: 0 0 20px 20px;
+  padding: 20px;
+  margin-bottom: 20px;
   margin-top: -2px;
   border-left: 2px solid var(--accent-color);
   position: relative;
+  background-color: rgba(30, 41, 59, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.resume .resume-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+  background-color: rgba(30, 41, 59, 0.8);
 }
 
 .resume .resume-item h4 {
@@ -837,6 +852,12 @@ section,
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.portfolio .portfolio-content:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.2);
 }
 
 .portfolio .portfolio-content img {
@@ -1316,7 +1337,12 @@ section,
   vertical-align: middle;
 }
 
-.contact form button[type=submit]:disabled {
+.contact form button[type=submit]:disabled,
+#download-web-pdf {
+  transition: opacity 0.3s;
+}
+
+#download-web-pdf[style*="pointer-events: none"] {
   opacity: 0.6;
   cursor: not-allowed;
 }
