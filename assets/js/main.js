@@ -216,23 +216,28 @@
   /**
    * Navmenu Scrollspy
    */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  const navmenulinks = document.querySelectorAll('.navmenu a');
+
+  const navmenuSections = [];
+  navmenulinks.forEach(navmenulink => {
+    if (navmenulink.hash) {
+      const section = document.querySelector(navmenulink.hash);
+      if (section) {
+        navmenuSections.push({
+          link: navmenulink,
+          section: section
+        });
+      }
+    }
+  });
 
   function navmenuScrollspy() {
     let position = window.scrollY + 200;
-
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
-      if (!section) return;
-
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        if (!navmenulink.classList.contains('active')) {
-          navmenulinks.forEach(link => link.classList.remove('active'));
-          navmenulink.classList.add('active');
-        }
-      } else if (navmenulink.classList.contains('active')) {
-        navmenulink.classList.remove('active');
+    navmenuSections.forEach(item => {
+      if (position >= item.section.offsetTop && position <= (item.section.offsetTop + item.section.offsetHeight)) {
+        item.link.classList.add('active');
+      } else {
+        item.link.classList.remove('active');
       }
     });
   }
