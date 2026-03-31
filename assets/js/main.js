@@ -151,15 +151,17 @@
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    let container = isotopeItem.querySelector('.isotope-container');
-    imagesLoaded(container, function() {
-      initIsotope = new Isotope(container, {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
+    const isotopeContainer = isotopeItem.querySelector('.isotope-container');
+    if (isotopeContainer) {
+      imagesLoaded(isotopeContainer, function() {
+        initIsotope = new Isotope(isotopeContainer, {
+          itemSelector: '.isotope-item',
+          layoutMode: layout,
+          filter: filter,
+          sortBy: sort
+        });
       });
-    });
+    }
 
     isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
       filters.addEventListener('click', function() {
