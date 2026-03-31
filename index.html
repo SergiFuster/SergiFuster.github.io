@@ -29,45 +29,6 @@
 
   <!-- html2pdf -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("JNkw-kW19FWSXD1mJ"); // Reemplaza con tu user_id de EmailJS
-        })();
-    </script>
-    <script type="text/javascript">
-        function sendEmail(event) {
-            event.preventDefault();
-            const form = event.target;
-            const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-
-            // Loading state
-            btn.disabled = true;
-            btn.innerHTML = '<span class="loading-spinner"></span> Sending...';
-
-            emailjs.sendForm('service_uca0hzq', 'template_znsrc9u', form)
-                .then(function(response) {
-                    // Success state
-                    btn.innerHTML = 'Sent!';
-                    console.log('SUCCESS!', response.status, response.text);
-                    form.reset();
-                    setTimeout(() => {
-                        btn.disabled = false;
-                        btn.innerHTML = originalText;
-                    }, 3000);
-                }, function(error) {
-                    // Error state
-                    btn.innerHTML = 'Error. Try again.';
-                    console.error('FAILED...', error);
-                    setTimeout(() => {
-                        btn.disabled = false;
-                        btn.innerHTML = originalText;
-                    }, 3000);
-                });
-        }
-  </script>
 </head>
 
 <body class="index-page">
@@ -422,14 +383,14 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Get in touch! The contact form also works, try it!</p>
+        <p>Get in touch!</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
 
-          <div class="col-lg-5">
+          <div class="col-lg-12">
 
             <div class="info-wrap">
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
@@ -449,37 +410,6 @@
               </div><!-- End Info Item -->
             </div>
           </div>
-          <div class="col-lg-7">
-            <form onsubmit="sendEmail(event)" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <label for="name" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name" class="form-control" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <label for="email" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="subject" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="message" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <p>(You'll receive a copy of the message)</p>
-                  <button class="btn btn-primary" type="submit">Send Message</button>
-                </div>
-              </div>
-            </form>
-        </div>
       </div>
 
     </section><!-- /Contact Section -->
