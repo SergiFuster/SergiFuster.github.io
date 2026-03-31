@@ -218,21 +218,30 @@
   /**
    * Navmenu Scrollspy
    */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  const navmenulinks = document.querySelectorAll('.navmenu a');
+
+  const navmenuSections = [];
+  navmenulinks.forEach(navmenulink => {
+    if (navmenulink.hash) {
+      const section = document.querySelector(navmenulink.hash);
+      if (section) {
+        navmenuSections.push({
+          link: navmenulink,
+          section: section
+        });
+      }
+    }
+  });
 
   function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
-      if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
+    let position = window.scrollY + 200;
+    navmenuSections.forEach(item => {
+      if (position >= item.section.offsetTop && position <= (item.section.offsetTop + item.section.offsetHeight)) {
+        item.link.classList.add('active');
       } else {
-        navmenulink.classList.remove('active');
+        item.link.classList.remove('active');
       }
-    })
+    });
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
