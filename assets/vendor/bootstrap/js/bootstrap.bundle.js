@@ -2405,7 +2405,16 @@
     // anyway.
     // Browsers where the left scrollbar doesn't cause an issue report `0` for
     // this (e.g. Edge 2019, IE11, Safari)
-    return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
+    var html = getDocumentElement(element);
+    var rect = getBoundingClientRect(html);
+    var scroll = getWindowScroll(element);
+    var x = rect.left + scroll.scrollLeft;
+
+    if (getComputedStyle$1(html).direction === 'rtl') {
+      x += Math.abs(rect.width - html.clientWidth);
+    }
+
+    return x;
   }
 
   function getViewportRect(element, strategy) {
