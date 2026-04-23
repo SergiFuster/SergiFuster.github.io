@@ -239,7 +239,7 @@ h6 {
   left: 0;
 }
 
-.header .header-toggle {
+.header-toggle {
   color: var(--contrast-color);
   background-color: var(--accent-color);
   font-size: 22px;
@@ -257,7 +257,7 @@ h6 {
   transition: background-color 0.3s;
 }
 
-.header .header-toggle:hover {
+.header-toggle:hover {
   color: var(--contrast-color);
   background-color: rgba(59, 130, 246, 0.9);
 }
