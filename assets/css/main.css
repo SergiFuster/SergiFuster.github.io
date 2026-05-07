@@ -239,27 +239,29 @@ h6 {
   left: 0;
 }
 
-.header .header-toggle {
+.header-toggle {
   color: var(--contrast-color);
   background-color: var(--accent-color);
   font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   cursor: pointer;
   position: fixed;
   top: 15px;
   right: 15px;
   z-index: 9999;
-  transition: background-color 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.header .header-toggle:hover {
+.header-toggle:hover {
   color: var(--contrast-color);
   background-color: rgba(59, 130, 246, 0.9);
+  transform: scale(1.05);
 }
 
 /*--------------------------------------------------------------
@@ -711,14 +713,26 @@ section,
   color: var(--heading-color);
   padding: 0;
   margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 600;
   font-family: var(--heading-font);
 }
 
+.skills .progress .skill .skill-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skills .progress .skill .skill-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
 .skills .progress .skill .val {
-  float: right;
   font-style: normal;
 }
 
@@ -1322,27 +1336,3 @@ section,
   /* Add your styles here */
 }
 
-/*--------------------------------------------------------------
-# Button Loading State
---------------------------------------------------------------*/
-.loading-spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: php-email-form-loading 1s linear infinite;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-.contact form button[type=submit]:disabled,
-#download-web-pdf {
-  transition: opacity 0.3s;
-}
-
-#download-web-pdf[style*="pointer-events: none"] {
-  opacity: 0.6;
-  cursor: not-allowed;
-}

@@ -264,42 +264,4 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
-  /**
-   * PDF Generation
-   */
-  const downloadWebPdfBtn = document.getElementById('download-web-pdf');
-  if (downloadWebPdfBtn) {
-    downloadWebPdfBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-
-      const originalHtml = downloadWebPdfBtn.innerHTML;
-      downloadWebPdfBtn.innerHTML = '<span class="loading-spinner"></span> Generating...';
-      downloadWebPdfBtn.style.pointerEvents = 'none';
-
-      // Select main element to exclude the fixed header menu
-      const element = document.querySelector('main');
-
-      // Options for html2pdf
-      const opt = {
-        margin:       0.5,
-        filename:     'Sergi_Fuster_Portfolio.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-
-      html2pdf().set(opt).from(element).save().then(() => {
-        downloadWebPdfBtn.innerHTML = originalHtml;
-        downloadWebPdfBtn.style.pointerEvents = 'auto';
-      }).catch(err => {
-        console.error('Error generating PDF:', err);
-        downloadWebPdfBtn.innerHTML = 'Error. Try Again';
-        setTimeout(() => {
-          downloadWebPdfBtn.innerHTML = originalHtml;
-          downloadWebPdfBtn.style.pointerEvents = 'auto';
-        }, 3000);
-      });
-    });
-  }
-
 })();
