@@ -242,17 +242,17 @@ h6 {
 .header-toggle {
   color: var(--contrast-color);
   background-color: var(--accent-color);
-  font-size: 22px;
+  font-size: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   cursor: pointer;
   position: fixed;
-  top: 15px;
-  right: 15px;
+  top: 18px;
+  right: 18px;
   z-index: 9999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   transition: background-color 0.3s, transform 0.3s;
